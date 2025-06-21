@@ -1,0 +1,73 @@
+You are a full-stack developer. Build a complete and professional productivity web app called **FocusHero**, with the following requirements.
+
+---
+
+💡 **App Purpose**:  
+A productivity tool with a Pomodoro-style timer, GPT-generated motivational boosts, session tracking, and user customization.
+
+---
+
+🔹 **Frontend: React (Web App)**
+
+🧩 Pages:
+1. **Home Page**:
+   - Central 25-minute Pomodoro timer
+   - “Start Focus Session” button
+   - Motivational quote from GPT API (`GET /api/motivation`)
+   - Live session timer with progress bar
+
+2. **Session Tracker Page**:
+   - List of past completed sessions
+   - Show: start time, duration, optional productivity note
+   - Stored via `POST /api/session` and fetched via `GET /api/session`
+
+3. **Settings Page**:
+   - Change timer length (default: 25 mins)
+   - Toggle between dark/light mode
+   - Set daily session goal (e.g., 4 focus blocks)
+
+🎨 **UI/UX Guidelines**:
+- Use **Material UI (MUI)** for layout and theming
+- Include top nav bar and responsive sidebar
+- Smooth transitions, soft colors (focus theme), animated progress bar
+- Responsive for mobile/tablet
+- Dark/light theme toggle using context or custom hook
+- High-contrast buttons, clear typography
+- Use localStorage for settings and client-side state caching
+
+📦 Tools:
+- React + Hooks
+- `axios` for API calls
+- `react-router-dom` for navigation
+- `localStorage` to persist user preferences and fallback if backend fails
+
+---
+
+🔹 **Backend: Node.js + Express + OpenAI GPT API**
+
+🌐 API Endpoints:
+1. `GET /api/motivation`
+   - Returns a short motivational one-liner from OpenAI ChatGPT (e.g., “Stay focused, you’re doing amazing!”)
+   - Prompt to GPT: “Give a short, uplifting one-liner for someone trying to stay focused”
+
+2. `POST /api/session`
+   - Input: `{ startTime, duration, note }`
+   - Save to MongoDB (optional) or in-memory store for simple use
+   - Validate inputs
+
+3. `GET /api/session`
+   - Returns an array of stored focus sessions (latest first)
+
+🧠 GPT Integration:
+- Use OpenAI’s `openai` npm package (v4+ preferred)
+- Use `gpt-3.5-turbo` model with default system prompt
+- API key stored in `.env` as `OPENAI_API_KEY`
+
+🛠 Tech:
+- Node.js, Express.js
+- `cors`, `dotenv`, `mongoose` (optional for MongoDB)
+- JSON body parsing
+- Async/await and structured error handling
+- Secure default headers
+
+🔐 Environment:
