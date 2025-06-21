@@ -5,8 +5,10 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Play, Pause, RotateCcw, Settings as SettingsIcon } from 'lucide-react';
 import { useTimer } from '@/hooks/useTimer';
+import { useLocation } from 'wouter';
 
 export default function PomodoroTimer() {
+  const [, setLocation] = useLocation();
   const {
     timerState,
     sessionNote,
@@ -138,6 +140,7 @@ export default function PomodoroTimer() {
           <Button
             variant="outline"
             size="lg"
+            onClick={() => setLocation('/settings')}
             disabled={isCreatingSession}
             className="w-12 h-12 rounded-full"
           >
